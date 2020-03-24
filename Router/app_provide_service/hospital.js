@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-// NOT sure d
+// NOT sure
 
 // GET one patient plan
 // @GET /api/patient_plan/:id

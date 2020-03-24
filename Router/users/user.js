@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 
+const { addNewUser, getUsers } = require("../../DB/user");
+
 // REQUIEST ONE USER DATA
 // @GET /api/user
 router.get("/:id", (req, res) => {
@@ -10,15 +12,21 @@ router.get("/:id", (req, res) => {
 
 // REQUIEST ALL USER DATA
 // @GET /api/user
-router.get("/", (req, res) => {
-  res.send("this is user data ");
+router.get("/", async (req, res) => {
+  const users = await getUsers();
+  res.send(users);
 });
 
 // ADD USER DATA
 // @POST /api/user
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   // ADDING USER DATA IN THE DATABASE
-  res.send("user has been add");
+
+  console.log(req.body);
+
+  const createNewUser = await addNewUser(req.body);
+
+  res.send(createNewUser);
 });
 
 // DELETE USER FROM THE DATABASE
