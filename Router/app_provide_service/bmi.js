@@ -5,18 +5,6 @@ const router = express.Router();
 // GET MBI INFORMATION a
 // @GET /api/MBI
 // JSON OBJECT NEED:
-/*
-{
-  weight: {
-    weight: Number,
-    unit: String
-  },
-  height: {
-    height: Number,
-    unit: String
-  }
-};
-*/
 router.get("/", (req, res) => {
   const userWeightInfo = req.body.weight;
   const userHeightInfo = req.body.height;
@@ -42,7 +30,15 @@ router.get("/", (req, res) => {
   }
   heightSquared = height * height;
   BMI = weight / heightSquared;
-  res.send(`the BMI is ${BMI}`);
+  res.status(200).send(`the BMI is ${BMI}`);
+});
+
+// POSTING PATIENT BMI
+// @POST /api/bmi
+router.post("/", (req, res) => {
+  const { patientId, bmi } = req.body;
+
+  // add it to patient progile
 });
 
 module.exports = router;

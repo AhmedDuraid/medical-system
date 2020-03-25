@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
 // @GET /api/user
 router.get("/", async (req, res) => {
   const users = await getUsers();
-  res.send(users);
+  res.status(200).send(users);
 });
 
 // ADD USER DATA

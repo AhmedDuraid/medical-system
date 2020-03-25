@@ -1,23 +1,40 @@
 // patient managment informations
 const express = require("express");
 const router = express.Router();
+const {
+  addNewPatient,
+  getPatientByname: getPatientByName,
+  getPatientsInformation,
+  getPatientById
+} = require("../../DB/patientDB");
 
 // GET ONE patient DATA
 // @GET /api/patient/id:
-router.get("/:id", (req, res) => {
-  res.send(`THIS IS PATIENT DATA ${req.params.id}`);
+router.get("/:id", async (req, res) => {
+  const patient = await getPatientById();
+  res.status(200).send(patient);
+});
+
+// GET  patient DATA by name
+// @GET /api/patient/name:
+router.get("/:name", async (req, res) => {
+  const patientData = await getPatientByName();
+  res.status(200).send(patientData);
 });
 
 // GET ALL PATIENT DATA
 // @GET /api/patient
-router.get("/", (req, res) => {
-  res.send("ALL PATIENT DATA ");
+router.get("/", async (req, res) => {
+  const patientsData = await getPatientsInformation();
+  res.status(200).send(patientsData);
 });
 
 // POST NEW PATIENT
 // @POST /api/patient
-router.post("/", (req, res) => {
-  res.send("ADDING NEW PATIENT ");
+router.post("/", async (req, res) => {
+  const newPatient = await addNewPatient(req.body);
+
+  res.status(200).send(`patient ${req.body.firstname} has been added `);
 });
 
 // UPDATE PATIENT DATA

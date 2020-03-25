@@ -10,12 +10,13 @@ const patient = require("./Router/users/patient");
 const medicine = require("./Router/service/medicine");
 const plan = require("./Router/service/plan");
 const food = require("./Router/app_provide_service/food");
-const progress = require("./Router/service/progress");
+const progress = require("./Router/patientProfile/patientProfile");
 const bmi = require("./Router/app_provide_service/bmi");
 const article = require("./Router/other/articles");
 const feedback = require("./Router/other/feedback");
 const hospital = require("./Router/app_provide_service/hospital");
-const patientPlan = require("./Router/service/patientProfile");
+const patientPlan = require("./Router/service/plan");
+// ADD PATIENT PROFILE
 
 // Env Setep
 const app = express();
