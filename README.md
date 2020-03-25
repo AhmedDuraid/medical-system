@@ -1,6 +1,6 @@
 ## medical system "server-side"
 
-** to run the prpject you need:**
+**to run the prpject you need:**
 
 1. install node.js
 2. clone the project
