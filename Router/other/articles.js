@@ -2,9 +2,16 @@
 const express = require("express");
 const router = express.Router();
 
+const {
+  getArticleById,
+  getArticles,
+  addArticle
+} = require("../../DB/articleDB");
+
 // GET ALL THE articles
 // @GET /api/articles
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  await getArticles();
   res.send("this is all articles");
 });
 
@@ -16,18 +23,20 @@ router.get("/:id", (req, res) => {
 
 // POST A NEW articles
 // @POST /articles/food
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
+  await addArticle(req.body);
   res.send("posting new articles");
 });
 
 // UPDATE  FOOD
-// @PUT /api/food/id
-router.put("/:id", (req, res) => {
+// @PUT /api/articles/id
+router.put("/:id", async (req, res) => {
+  await getArticleById(req.params.id);
   res.send(`articles ${req.params.id} has been updated`);
 });
 
 // DELETE FOOD
-// @DELETE /api/food/id
+// @DELETE /api/articles/id
 router.delete("/:id", (req, res) => {
   res.send(`articles ${req.params.id} had been deleted`);
 });

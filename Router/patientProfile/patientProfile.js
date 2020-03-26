@@ -46,4 +46,18 @@ router.put("/:patient_id", (req, res) => {
   res.send(`medical history ${req.params.patient_id} has been updated`);
 });
 
+// PATIENT PROGRESS
+
+// UPDATE  PROGRESS
+// @PUT /api/progress/id
+router.put("/progress/:id", (req, res) => {
+  res.send(`PROGRESS ${req.params.id} has been updated`);
+});
+
+// GET PROGRESS
+// @GET /api/progress/:id
+router.get("/progress/:id", (req, res) => {
+  res.send(`this is patient progress ${req.params.id}`);
+});
+
 module.exports = router;
