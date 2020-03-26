@@ -12,4 +12,12 @@ npm i express mongoose dotenv
 npm i -D nodemon
 ```
 
+**or**
+
+```
+clone the project
+npm install
+
+```
+
 3. create .confg file that have PORT and Database conn string
