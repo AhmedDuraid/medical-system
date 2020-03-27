@@ -8,7 +8,7 @@ const {
   addNewPatient,
   updatePatient,
   deletePatientByID
-} = require("../../DB/patientDB");
+} = require("../../DB/usersDB/patientDB");
 
 // 400 bad request, 200 ok, 404 not found
 

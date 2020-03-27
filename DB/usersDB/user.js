@@ -1,4 +1,4 @@
-const users = require("../models/userModel");
+const users = require("../../models/userModel");
 
 let dataObject = {
   error: {

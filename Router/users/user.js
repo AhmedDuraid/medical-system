@@ -8,7 +8,7 @@ const {
   getUserByName,
   updateUser,
   deleteUser
-} = require("../../DB/user");
+} = require("../../DB/usersDB/user");
 
 // REQUIEST ALL USER DATA
 // @GET /api/user

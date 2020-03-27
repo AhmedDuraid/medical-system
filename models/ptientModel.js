@@ -46,7 +46,7 @@ const patientSchema = new mongoose.Schema({
   },
   dateOfCreate: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   },
   nationality: String,
   address: String,
