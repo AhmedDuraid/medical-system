@@ -158,7 +158,6 @@ exports.updateUser = async (userId, updatedBody) => {
 };
 
 // delete user
-
 exports.deleteUser = async userId => {
   try {
     await users.findByIdAndRemove(userId);
