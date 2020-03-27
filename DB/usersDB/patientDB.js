@@ -1,4 +1,4 @@
-const patientModel = require("../../models/ptientModel");
+const patientModel = require("../../models/usersModel/ptientModel");
 
 // the object that send to user
 let DBPatientsDataObject = {
