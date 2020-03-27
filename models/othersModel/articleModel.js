@@ -8,7 +8,7 @@ const articleSchema = new mongoose.Schema({
   },
   createDate: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   },
   createBy: {
     type: String,
@@ -20,7 +20,7 @@ const articleSchema = new mongoose.Schema({
   },
   lastUpdate: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   },
   show: {
     type: Boolean,

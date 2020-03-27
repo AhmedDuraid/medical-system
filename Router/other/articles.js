@@ -5,40 +5,100 @@ const router = express.Router();
 const {
   getArticleById,
   getArticles,
-  addArticle
-} = require("../../DB/articleDB");
+  addArticle,
+  deleteArticle,
+  updateArticle
+} = require("../../DB/othersDB/articleDB");
 
 // GET ALL THE articles
 // @GET /api/articles
 router.get("/", async (req, res) => {
-  await getArticles();
-  res.send("this is all articles");
+  const articles = await getArticles();
+
+  switch (articles.status) {
+    case 200:
+      res.status(200).send(articles);
+      break;
+    case 404:
+      res.status(404).send(articles);
+      break;
+    case 400:
+      res.status(400).send(articles);
+      break;
+    default:
+      return;
+  }
 });
 
 // GET one articles
 // @GET /api/articles/:id
-router.get("/:id", (req, res) => {
-  res.send(` the articles is ${req.params.id}`);
+router.get("/:id", async (req, res) => {
+  const article = await getArticleById(req.params.id);
+
+  switch (article.status) {
+    case 200:
+      res.status(200).send(article);
+      break;
+    case 404:
+      res.status(404).send(article);
+      break;
+    case 400:
+      res.status(400).send(article);
+      break;
+    default:
+      return;
+  }
 });
 
-// POST A NEW articles
-// @POST /articles/food
+// POST NEW ARTICLE
+// @POST /api/api/articles/
 router.post("/", async (req, res) => {
-  await addArticle(req.body);
-  res.send("posting new articles");
+  const newArticle = await addArticle(req.body);
+
+  switch (newArticle.status) {
+    case 200:
+      res.status(200).send(newArticle);
+      break;
+    case 404:
+      res.status(404).send(newArticle);
+      break;
+    default:
+      return;
+  }
 });
 
-// UPDATE  FOOD
+// UPDATE  articles
 // @PUT /api/articles/id
 router.put("/:id", async (req, res) => {
-  await getArticleById(req.params.id);
-  res.send(`articles ${req.params.id} has been updated`);
+  const article = await updateArticle(req.params.id, req.body);
+
+  switch (article.status) {
+    case 200:
+      res.status(200).send(article);
+      break;
+    case 400:
+      res.status(400).send(article);
+      break;
+    default:
+      return;
+  }
 });
 
-// DELETE FOOD
+// DELETE articles
 // @DELETE /api/articles/id
-router.delete("/:id", (req, res) => {
-  res.send(`articles ${req.params.id} had been deleted`);
+router.delete("/:id", async (req, res) => {
+  const article = await deleteArticle(req.params.id);
+
+  switch (article.status) {
+    case 200:
+      res.status(200).send(article);
+      break;
+    case 400:
+      res.status(400).send(article);
+      break;
+    default:
+      return;
+  }
 });
 
 module.exports = router;
