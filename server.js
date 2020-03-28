@@ -29,10 +29,10 @@ app.use("/api/patient", patient);
 app.use("/api/article", article);
 app.use("/api/bmi", bmi);
 app.use("/api/feedback", feedback);
+app.use("/api/food", food);
 
 app.use("/api/medicine", medicine);
 app.use("/api/plan", plan);
-app.use("/api/food", food);
 app.use("/api/hospital", hospital);
 app.use("/api/patient_plan", patientPlan);
 
