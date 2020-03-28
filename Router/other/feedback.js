@@ -2,21 +2,34 @@
 const express = require("express");
 const router = express.Router();
 
-// POST NEW FEEDBACK
-// @POST /api/feedback
-router.post("/", (req, res) => {
-  res.send("post all feedback");
-});
+const {
+  getFeedback,
+  getFeedbackById,
+  addNewFeedback
+} = require("../../DB/othersDB/feedbackDB");
 
 // GET ALL FEEDBACK
 // @GET /api/feedback
-router.get("/", (req, res) => {
-  res.send("get all feedback");
+router.get("/", async (req, res) => {
+  const data = await getFeedback();
+
+  res.status(data.status).send(data);
 });
 
 // GET ONE FEEDBACK
 //@GET /api/feedback/:id
-router.post("/:id", (req, res) => {
-  res.send(`this is ger req for one feedback ${req.params.id}`);
+router.get("/:id", async (req, res) => {
+  const data = await getFeedbackById(req.params.id);
+
+  res.status(data.status).send(data);
 });
+
+// POST NEW FEEDBACK
+// @POST /api/feedback
+router.post("/", async (req, res) => {
+  const newPost = await addNewFeedback(req.body);
+
+  res.status(newPost.status).send(newPost);
+});
+
 module.exports = router;
