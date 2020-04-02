@@ -15,39 +15,14 @@ const {
 router.get("/", async (req, res) => {
   const articles = await getArticles();
 
-  switch (articles.status) {
-    case 200:
-      res.status(200).send(articles);
-      break;
-    case 404:
-      res.status(404).send(articles);
-      break;
-    case 400:
-      res.status(400).send(articles);
-      break;
-    default:
-      return;
-  }
+  res.status(articles.status).send(articles);
 });
 
 // GET one articles
 // @GET /api/articles/:id
 router.get("/:id", async (req, res) => {
   const article = await getArticleById(req.params.id);
-
-  switch (article.status) {
-    case 200:
-      res.status(200).send(article);
-      break;
-    case 404:
-      res.status(404).send(article);
-      break;
-    case 400:
-      res.status(400).send(article);
-      break;
-    default:
-      return;
-  }
+  res.status(article.status).send(article);
 });
 
 // POST NEW ARTICLE
@@ -55,16 +30,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const newArticle = await addArticle(req.body);
 
-  switch (newArticle.status) {
-    case 200:
-      res.status(200).send(newArticle);
-      break;
-    case 404:
-      res.status(404).send(newArticle);
-      break;
-    default:
-      return;
-  }
+  res.status(newArticle.status).send(newArticle);
 });
 
 // UPDATE  articles
@@ -72,16 +38,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const article = await updateArticle(req.params.id, req.body);
 
-  switch (article.status) {
-    case 200:
-      res.status(200).send(article);
-      break;
-    case 400:
-      res.status(400).send(article);
-      break;
-    default:
-      return;
-  }
+  res.status(article.status).send(article);
 });
 
 // DELETE articles
@@ -89,16 +46,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const article = await deleteArticle(req.params.id);
 
-  switch (article.status) {
-    case 200:
-      res.status(200).send(article);
-      break;
-    case 400:
-      res.status(400).send(article);
-      break;
-    default:
-      return;
-  }
+  res.status(article.status).send(article);
 });
 
 module.exports = router;

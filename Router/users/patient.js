@@ -18,18 +18,7 @@ router.get("/", async (req, res) => {
   try {
     const DBPatientsData = await getPatientsInformation();
 
-    switch (DBPatientsData.status) {
-      case 200:
-        res.status(200).send(DBPatientsData);
-        break;
-      case 404:
-        res.status(404).send(DBPatientsData.server_message);
-        break;
-      case 400:
-        res.status(400).send(DBPatientsData);
-      default:
-        return;
-    }
+    res.status(DBPatientsData.status).send(DBPatientsData);
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -41,18 +30,7 @@ router.get("/:id", async (req, res) => {
   try {
     const DBPatientData = await getPatientById(req.params.id);
 
-    switch (DBPatientData.status) {
-      case 200:
-        res.status(200).send(DBPatientData);
-        break;
-      case 404:
-        res.status(404).send(DBPatientData);
-        break;
-      case 400:
-        res.status(400).send(DBPatientData);
-      default:
-        return;
-    }
+    res.status(DBPatientData.status).send(DBPatientData);
   } catch (error) {
     console.log(error);
 
@@ -66,18 +44,7 @@ router.get("/name/:name", async (req, res) => {
   try {
     const DBPatientsData = await getPatientByName(req.params.name);
 
-    switch (DBPatientsData.status) {
-      case 200:
-        res.status(200).send(DBPatientsData);
-        break;
-      case 404:
-        res.status(404).send(DBPatientsData.server_message);
-        break;
-      case 400:
-        res.status(400).send(DBPatientsData);
-      default:
-        return;
-    }
+    res.status(DBPatientsData.status).send(DBPatientsData);
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -89,13 +56,7 @@ router.post("/", async (req, res) => {
   try {
     const newPatient = await addNewPatient(req.body);
 
-    switch (newPatient.status) {
-      case 200:
-        res.status(200).send(newPatient);
-        break;
-      case 400:
-        res.status(400).send(newPatient);
-    }
+    res.status(newPatient.status).send(newPatient);
   } catch (error) {
     res.status(500).json({ error: error });
   }

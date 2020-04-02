@@ -2,7 +2,9 @@
 const express = require("express");
 const router = express.Router();
 
-// GET MBI INFORMATION a
+const { updatePatient } = require("../../DB/usersDB/patientDB");
+
+// GET MBI INFORMATION
 // @GET /api/MBI
 // JSON OBJECT NEED:
 router.get("/", (req, res) => {
@@ -35,8 +37,14 @@ router.get("/", (req, res) => {
 
 // POSTING PATIENT BMI
 // @POST /api/bmi
-router.post("/", (req, res) => {
-  const { patientId, bmi } = req.body;
+router.post("/:id", async (req, res) => {
+  try {
+    const patientBMI = await updatePatient(req.params.id, req.body);
+
+    res.status(patientBMI.status).send(patientBMI);
+  } catch (error) {
+    res.status(500).send({ error: error });
+  }
 
   // add it to patient progile
 });

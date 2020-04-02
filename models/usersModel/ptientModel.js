@@ -51,7 +51,8 @@ const patientSchema = new mongoose.Schema({
   nationality: String,
   address: String,
   weight: Number,
-  height: Number
+  height: Number,
+  bmi: Number
 });
 
 module.exports = mongoose.model("patient_information", patientSchema);
