@@ -32,8 +32,8 @@ app.use("/api/bmi", bmi);
 app.use("/api/feedback", feedback);
 app.use("/api/food", food);
 app.use("/api/patient_logs", patienLogs);
-
 app.use("/api/medicine", medicine);
+
 app.use("/api/plan", plan);
 app.use("/api/hospital", hospital);
 app.use("/api/patient_plan", patientPlan);
@@ -54,6 +54,6 @@ mongoose.connect(
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`server start on port: ${PORT}`.yellow.bold);
 });
