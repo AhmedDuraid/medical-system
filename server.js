@@ -13,8 +13,7 @@ const food = require("./Router/app_provide_service/food");
 const bmi = require("./Router/app_provide_service/bmi");
 const article = require("./Router/other/articles");
 const feedback = require("./Router/other/feedback");
-const hospital = require("./Router/app_provide_service/hospital");
-const patientPlan = require("./Router/service/plan");
+const patientProfile = require("./Router/patientProfile/patientProfile");
 const patienLogs = require("./Router/logs/patientLogs");
 // ADD PATIENT PROFILE
 
@@ -33,10 +32,9 @@ app.use("/api/feedback", feedback);
 app.use("/api/food", food);
 app.use("/api/patient_logs", patienLogs);
 app.use("/api/medicine", medicine);
+app.use("/api/patient_profile", patientProfile);
 
 app.use("/api/plan", plan);
-app.use("/api/hospital", hospital);
-app.use("/api/patient_plan", patientPlan);
 
 // database connection
 mongoose.connect(

@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const patientProfileSchema = new mongoose.Schema({
   patientID: {
     type: String,
-    required: true
+    required: true,
   },
   medicalHistory: {
-    type: Object
+    type: Object,
   },
   plan: {
-    type: Object
-  }
+    type: Object,
+  },
 });
 
 module.exports = mongoose.model("medicalHistory", patientProfileSchema);
