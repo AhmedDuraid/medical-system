@@ -1,6 +1,6 @@
 ## medical system "server-side"
 
-**to run the prpject you need:**
+**to run the project you need:**
 
 1. install node.js
 2. clone the project
@@ -20,4 +20,4 @@ npm install
 
 ```
 
-3. create .confg file that have PORT and Database conn string
+4. create .confg file that have PORT and Database conn string
