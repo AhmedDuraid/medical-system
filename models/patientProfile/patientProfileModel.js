@@ -5,12 +5,10 @@ const patientProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  medicalHistory: {
-    type: Object,
-  },
-  plan: {
-    type: Object,
-  },
+  medicalHistory: {},
+  plan: {},
+  progress: [{ date: Date, weight: Number }],
+  doctorNote: [{ date: Date, note: String }],
 });
 
-module.exports = mongoose.model("medicalHistory", patientProfileSchema);
+module.exports = mongoose.model("patientProfile", patientProfileSchema);

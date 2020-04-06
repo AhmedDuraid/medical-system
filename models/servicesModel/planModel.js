@@ -5,6 +5,7 @@ const planSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  planDes: { type: String, required: true },
   foodPlan: [{ day: Number, plan: {} }],
   exercise: [{ day: Number, plan: {} }],
   medicine: { type: String },
