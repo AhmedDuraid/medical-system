@@ -8,13 +8,12 @@ const mongoose = require("mongoose");
 const user = require("./Router/users/user");
 const patient = require("./Router/users/patient");
 const medicine = require("./Router/service/medicine");
-const plan = require("./Router/service/plan");
+const plans = require("./Router/service/plan");
 const food = require("./Router/app_provide_service/food");
 const bmi = require("./Router/app_provide_service/bmi");
 const article = require("./Router/other/articles");
 const feedback = require("./Router/other/feedback");
-const hospital = require("./Router/app_provide_service/hospital");
-const patientPlan = require("./Router/service/plan");
+const patientProfile = require("./Router/patientProfile/patientProfile");
 const patienLogs = require("./Router/logs/patientLogs");
 // ADD PATIENT PROFILE
 
@@ -32,16 +31,14 @@ app.use("/api/bmi", bmi);
 app.use("/api/feedback", feedback);
 app.use("/api/food", food);
 app.use("/api/patient_logs", patienLogs);
-
 app.use("/api/medicine", medicine);
-app.use("/api/plan", plan);
-app.use("/api/hospital", hospital);
-app.use("/api/patient_plan", patientPlan);
+app.use("/api/patient_profile", patientProfile);
+app.use("/api/plans", plans);
 
 // database connection
 mongoose.connect(
   process.env.DATABASE_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   () => {
     console.log(
       `data base hase been connected on port ${mongoose.connection.port} and host ${mongoose.connection.host} and database ${mongoose.connection.name}`
@@ -54,6 +51,6 @@ mongoose.connect(
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`server start on port: ${PORT}`.yellow.bold);
 });

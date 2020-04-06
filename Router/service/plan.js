@@ -2,35 +2,54 @@
 const express = require("express");
 const router = express.Router();
 
-// REQUIEST ONE PLAN DATA
-// @GET /api/plan/:id
-router.get("/:id", (req, res) => {
-  res.send(`this is plan data ${req.params.id}`);
-});
+const {
+  getPlans,
+  createNewPlan,
+  deletePlan,
+  getPlanByID,
+  updatePlan,
+} = require("../../DB/serviceDB/planDB");
 
 // REQUIEST ALL PLANS DATA
 // @GET /api/plan
-router.get("/", (req, res) => {
-  res.send("this is plans data ");
+router.get("/", async (req, res) => {
+  const plan = await getPlans();
+
+  res.status(plan.status).send(plan);
+});
+
+// REQUIEST ONE PLAN DATA
+// @GET /api/plan/:id
+router.get("/:id", async (req, res) => {
+  const plan = await getPlanByID(req.params.id);
+
+  res.status(plan.status).send(plan);
 });
 
 // ADD PLAN DATA
 // @POST /api/plan
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   // ADDING USER DATA IN THE DATABASE
-  res.send("plan has been add");
+
+  const plan = await createNewPlan(req.body);
+
+  res.status(plan.status).send(plan);
 });
 
 // UPDATE PLAN
 // @PUT /api/plan/:id
-router.put("/:id", (req, res) => {
-  res.send(`PLAN HAS BEEN UPDATE ${req.params.id}`);
+router.put("/:id", async (req, res) => {
+  const plan = await updatePlan(req.params.id, req.body);
+
+  res.status(plan.status).send(plan);
 });
 
 // DELETE PLAN FROM THE DATABASE
 // @DELETE /api/plan
-router.delete("/:id", (req, res) => {
-  res.send(`PLAN HAS BEEN REMOVED ${req.params.id}`);
+router.delete("/:id", async (req, res) => {
+  const plan = await deletePlan(req.params.id);
+
+  res.status(plan.status).send(plan);
 });
 
 module.exports = router;
