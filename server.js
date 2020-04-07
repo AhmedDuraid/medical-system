@@ -3,6 +3,7 @@ const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // Routers
 const user = require("./Router/users/user");
@@ -21,6 +22,7 @@ const patienLogs = require("./Router/logs/patientLogs");
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 app.use(express.json());
+app.use(cors());
 
 // Routers in use
 
