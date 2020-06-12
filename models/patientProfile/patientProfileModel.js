@@ -5,11 +5,17 @@ const patientProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  medicalHistory: {},
+  medicalHistory: String,
   plan: {},
-  progress: [{ date: Date, weight: Number }],
-  doctorNote: [{ date: Date, note: String }],
-  labReq: [{ date: Date, labTest: String, isActive: Boolean }],
+  progress: [{ date: { type: Date, default: Date.now }, weight: Number }],
+  doctorNote: [{ date: { type: Date, default: Date.now }, note: String }],
+  labReq: [
+    {
+      date: { type: Date, default: Date.now },
+      labTest: String,
+      isActive: { type: Boolean, default: true },
+    },
+  ],
   labRes: [{ labTestID: String, labRes: {} }],
 });
 

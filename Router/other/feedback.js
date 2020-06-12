@@ -5,7 +5,8 @@ const router = express.Router();
 const {
   getFeedback,
   getFeedbackById,
-  addNewFeedback
+  addNewFeedback,
+  updateFeedbackToRead,
 } = require("../../DB/othersDB/feedbackDB");
 
 // GET ALL FEEDBACK
@@ -30,6 +31,10 @@ router.post("/", async (req, res) => {
   const newPost = await addNewFeedback(req.body);
 
   res.status(newPost.status).send(newPost);
+});
+router.put("/:id", async (req, res) => {
+  const updateFeedback = await updateFeedbackToRead(req.params.id);
+  res.status(updateFeedback.status).send(updateFeedback);
 });
 
 module.exports = router;
