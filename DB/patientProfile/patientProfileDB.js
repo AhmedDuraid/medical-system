@@ -65,7 +65,7 @@ exports.createPatientProfile = async (patientInformation) => {
 // update patient profile
 exports.updatePatientProfile = async (patientID, patientInformation) => {
   try {
-    await paitentProfileModel.findOneAndUpdate(patientID, patientInformation);
+    await paitentProfileModel.findByIdAndUpdate(patientID, patientInformation);
 
     DBPatienProfileDataObject.error.error = false;
     DBPatienProfileDataObject.error.message = null;
