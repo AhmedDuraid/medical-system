@@ -12,6 +12,32 @@ let DBPatienProfileDataObject = {
 };
 
 // patient medical history
+// get all patient history from DB
+exports.getAllPatientsProfiles = async () => {
+  try {
+    const profile = await paitentProfileModel.find();
+
+    DBPatienProfileDataObject.error.error = false;
+    DBPatienProfileDataObject.error.message = null;
+    DBPatienProfileDataObject.error.type = null;
+    DBPatienProfileDataObject.data = profile;
+    DBPatienProfileDataObject.status = 200;
+    DBPatienProfileDataObject.server_message = "patient has been found";
+
+    return DBPatienProfileDataObject;
+  } catch (error) {
+    DBPatienProfileDataObject.error.error = true;
+    DBPatienProfileDataObject.error.message = error.message;
+    DBPatienProfileDataObject.error.type = error.name;
+    DBPatienProfileDataObject.data = null;
+    DBPatienProfileDataObject.status = 400;
+    DBPatienProfileDataObject.server_message = "there is problem";
+
+    return DBPatienProfileDataObject;
+  }
+};
+
+// patient medical history
 // get patient history from DB
 exports.getPatientProfile = async (patientID) => {
   try {
