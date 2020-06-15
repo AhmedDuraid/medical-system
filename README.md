@@ -21,3 +21,6 @@ npm install
 ```
 
 4. create .confg file that have PORT and Database conn string
+
+**note**
+this code will be changed to improve JSX code
