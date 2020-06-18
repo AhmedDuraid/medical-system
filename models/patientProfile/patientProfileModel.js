@@ -16,7 +16,14 @@ const patientProfileSchema = new mongoose.Schema({
       isActive: { type: Boolean, default: true },
     },
   ],
-  labRes: [{ labTestID: String, labRes: {} }],
+  labRes: [
+    {
+      labTestName: String,
+      labRes: String,
+      patinetId: String,
+      date: { type: Date, default: Date.now },
+    },
+  ],
 });
 
 module.exports = mongoose.model("patientProfile", patientProfileSchema);
