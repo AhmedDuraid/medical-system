@@ -5,11 +5,11 @@ let DBPatientsDataObject = {
   error: {
     error: false,
     message: null,
-    type: null
+    type: null,
   },
   data: null,
   status: 0,
-  server_message: "" // 400 bad request, 200 ok, 404 not found
+  server_message: "", // 400 bad request, 200 ok, 404 not found
 };
 
 // get all patient data from the DB
@@ -48,7 +48,7 @@ exports.getPatientsInformation = async () => {
 };
 
 // get user by ID
-exports.getPatientById = async patientID => {
+exports.getPatientById = async (patientID) => {
   try {
     const patientData = await patientModel.findById(patientID);
 
@@ -61,7 +61,7 @@ exports.getPatientById = async patientID => {
       DBPatientsDataObject.server_message = "patient found";
       return DBPatientsDataObject;
     } else {
-      DBPatientsDataObject.error.error = false;
+      DBPatientsDataObject.error.error = true;
       DBPatientsDataObject.error.message = null;
       DBPatientsDataObject.error.type = null;
       DBPatientsDataObject.status = 404;
@@ -82,7 +82,7 @@ exports.getPatientById = async patientID => {
 };
 
 // get user by name
-exports.getPatientByName = async firstName => {
+exports.getPatientByName = async (firstName) => {
   try {
     const patientData = await patientModel.find({ firstName: firstName });
 
@@ -96,7 +96,7 @@ exports.getPatientByName = async firstName => {
 
       return DBPatientsDataObject;
     } else {
-      DBPatientsDataObject.error.error = false;
+      DBPatientsDataObject.error.error = true;
       DBPatientsDataObject.error.message = null;
       DBPatientsDataObject.error.type = null;
       DBPatientsDataObject.status = 404;
@@ -118,7 +118,7 @@ exports.getPatientByName = async firstName => {
 };
 
 // add new patient
-exports.addNewPatient = async patientData => {
+exports.addNewPatient = async (patientData) => {
   const {
     userName,
     password,
@@ -131,7 +131,7 @@ exports.addNewPatient = async patientData => {
     address,
     weight,
     height,
-    gender
+    gender,
   } = patientData;
 
   try {
@@ -147,7 +147,7 @@ exports.addNewPatient = async patientData => {
       address: address,
       weight: weight,
       height: height,
-      gender: gender
+      gender: gender,
     });
 
     DBPatientsDataObject.error.error = false;
@@ -199,7 +199,7 @@ exports.updatePatient = async (patientID, updatedPatientData) => {
 };
 
 // delete patient by id
-exports.deletePatientByID = async patientID => {
+exports.deletePatientByID = async (patientID) => {
   try {
     await patientModel.findByIdAndRemove(patientID);
 
